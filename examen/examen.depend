@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1558047158 source:/home/murraymatias/parcial/primerParcial/examen/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"orquesta.h"
+
+1558043165 /home/murraymatias/parcial/primerParcial/examen/utn.h
+
+1558046239 /home/murraymatias/parcial/primerParcial/examen/orquesta.h
+
+1558048017 source:/home/murraymatias/parcial/primerParcial/examen/orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"orquesta.h"
+
+1558048051 source:/home/murraymatias/parcial/primerParcial/examen/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
