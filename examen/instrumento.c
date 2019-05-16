@@ -105,7 +105,7 @@ int instrumento_new(Instrumento* list,int len)
     if(list!=NULL && len>0)
     {
         if(
-        !utn_getInt(&bufferTipo,"Ingrese Tipo: ","Valor invalido",1,999,10)&&
+        !utn_getInt(&bufferTipo,"Ingrese Tipo: \n1.Cuerdas\n2.Viento-madera\n3.Viento-metal\n4.Precusion\n","Valor invalido",1,4,10)&&
         !utn_getName(bufferNombre,50,"Ingrese Nombre: ","Valor invalido",1,50,10)&&
         !utn_getAddress(bufferLugar,255,"Ingrese Lugar: ","Valor invalido",1,255,10))
         {
@@ -212,7 +212,7 @@ int instrumento_modMenu(Instrumento *list,int len)
             switch(option)
             {
             case 1:
-                if(!utn_getInt(&bufferTipo,"Ingrese Tipo","Valor invalido",1,999,10))
+                if(!utn_getInt(&bufferTipo,"Ingrese Tipo: \n1.Cuerdas\n2.Viento-madera\n3.Viento-metal\n4.Precusion\n","Valor invalido",1,4,10))
                     list[i].Tipo=bufferTipo;
                 break;
             case 2:
