@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utn.h"
-#include "orquesta.h"
+#include "instrumento.h"
 
 static int autoId(void)
 {
@@ -10,7 +10,7 @@ static int autoId(void)
     return id++;
 }
 
-static int orquesta_freePosition(Orquesta* list,int len)
+static int instrumento_freePosition(Instrumento* list,int len)
 {
     int i;
     int ret=-1;
@@ -28,12 +28,12 @@ static int orquesta_freePosition(Orquesta* list,int len)
 /** \brief To indicate that all position in the array are empty,
  * this function put the flag (isEmpty) in TRUE in all
  * position of the array
- * \param list Orquesta* Pointer to array of employees
+ * \param list Instrumento* Pointer to array of employees
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_init(Orquesta* list,int len)
+int instrumento_init(Instrumento* list,int len)
 {
     int i;
     int ret= -1;
@@ -51,9 +51,9 @@ int orquesta_init(Orquesta* list,int len)
     return ret;
 }
 
-/** \brief add in a existing list of Orquesta the values received as parameters
+/** \brief add in a existing list of Instrumento the values received as parameters
  * in the first empty position
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param Tipo int
  * \param Nombre char*
@@ -61,7 +61,7 @@ int orquesta_init(Orquesta* list,int len)
  * \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
  *
  */
-int orquesta_add(  Orquesta* list,
+int instrumento_add(  Instrumento* list,
                 int len,
                 int Tipo,
                 char* Nombre,
@@ -73,30 +73,29 @@ int orquesta_add(  Orquesta* list,
     if(list!=NULL && len>=0)
     {
         id=autoId();
-        i=orquesta_freePosition(list,len);
+        i=instrumento_freePosition(list,len);
         if(i>=0)
         {
             list[i].id=id;
             list[i].isEmpty=0;
             list[i].Tipo=Tipo;
             strcpy(list[i].Nombre,Nombre);
-            strcpy(list[i].Lugar,Lugar);
             printf("\nAgregado");
-            orquesta_printByIndex(list,i);
+            instrumento_printByIndex(list,i);
             ret=0;
         }
     }
     return ret;
 }
 
-/** \brief request to the users the information for a new Orquesta
+/** \brief request to the users the information for a new Instrumento
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_new(Orquesta* list,int len)
+int instrumento_new(Instrumento* list,int len)
 {
     int ret= -1;
     int bufferTipo;
@@ -110,7 +109,7 @@ int orquesta_new(Orquesta* list,int len)
         !utn_getName(bufferNombre,50,"Ingrese Nombre: ","Valor invalido",1,50,10)&&
         !utn_getAddress(bufferLugar,255,"Ingrese Lugar: ","Valor invalido",1,255,10))
         {
-            orquesta_add(list,len,
+            instrumento_add(list,len,
                       bufferTipo,
                       bufferNombre,
                       bufferLugar);
@@ -120,36 +119,34 @@ int orquesta_new(Orquesta* list,int len)
     return ret;
 }
 
-/** \brief print one position of Orquesta array
+/** \brief print one position of Instrumento array
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param length int
  * \param index int
  * \return void
  *
  */
-void orquesta_printByIndex(Orquesta list[],int index)
+void instrumento_printByIndex(Instrumento list[],int index)
 {
 
     printf("\nId: %d\
             \n1.Tipo: %d\
-            \n2.Nombre: %s\
-            \n3.Lugar: %s\n",
+            \n2.Nombre: %s\n",
             list[index].id,
             list[index].Tipo,
-            list[index].Nombre,
-            list[index].Lugar);
+            list[index].Nombre);
     return;
 }
 
-/** \brief print the content of Orquesta array
+/** \brief print the content of Instrumento array
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param length int
  * \return void
  *
  */
-void orquesta_printAll(Orquesta* list,int len)
+void instrumento_printAll(Instrumento* list,int len)
 {
     int i;
     if(list!=NULL && len>=0)
@@ -158,7 +155,7 @@ void orquesta_printAll(Orquesta* list,int len)
         {
             if(list[i].isEmpty==0)
             {
-                orquesta_printByIndex(list,i);
+                instrumento_printByIndex(list,i);
             }
         }
     }
@@ -167,13 +164,13 @@ void orquesta_printAll(Orquesta* list,int len)
 
 /** \brief Request an id and deletes the register.
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param id int
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_delete(Orquesta* list,int len,int id)
+int instrumento_delete(Instrumento* list,int len,int id)
 {
     int ret= -1;
     if(list!=NULL && len>=0)
@@ -181,8 +178,7 @@ int orquesta_delete(Orquesta* list,int len,int id)
         list[id].id=-1;
         list[id].isEmpty=1;
         list[id].Tipo=-1;
-        strcpy(list[id].Nombre,""),
-        strcpy(list[id].Lugar,"");
+        strcpy(list[id].Nombre,"");
         ret=0;
     }
     return ret;
@@ -190,12 +186,12 @@ int orquesta_delete(Orquesta* list,int len,int id)
 
 /** \brief Request an id and permits modify his parameters.
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_modMenu(Orquesta *list,int len)
+int instrumento_modMenu(Instrumento *list,int len)
 {
     int ret=-1;
     int i;
@@ -203,17 +199,16 @@ int orquesta_modMenu(Orquesta *list,int len)
     int option;
     int bufferTipo;
     char bufferNombre[50];
-    char bufferLugar[255];
     utn_getInt(&auxId,"\nIngrese id: ","\nValor invalido",0,999999,10);
-    i=orquesta_searchById(list,len,auxId);
+    i=instrumento_searchById(list,len,auxId);
     if(i>=0)
     {
 
-        while(option!=5)
+        while(option!=4)
         {
-            orquesta_printByIndex(list,i);
-            printf("4. Salir");
-            utn_getInt(&option,"\nSeleccione campo a modificar: ","\nOpcion invalida",1,5,10);
+            instrumento_printByIndex(list,i);
+            printf("3. Salir");
+            utn_getInt(&option,"\nSeleccione campo a modificar: ","\nOpcion invalida",1,4,10);
             switch(option)
             {
             case 1:
@@ -223,10 +218,6 @@ int orquesta_modMenu(Orquesta *list,int len)
             case 2:
                 if(!utn_getString(bufferNombre,"Ingrese Nombre","Valor invalido",1,50,10))
                     strcpy(list[i].Nombre,bufferNombre);
-                break;
-            case 3:
-                if(!utn_getString(bufferLugar,"Ingrese Lugar","Valor invalido",1,255,10))
-                    strcpy(list[i].Lugar,bufferLugar);
                 break;
 
             }
@@ -240,15 +231,15 @@ int orquesta_modMenu(Orquesta *list,int len)
     return ret;
 }
 
-/** \brief find an Orquesta by Id en returns the index position in array.
+/** \brief find an Instrumento by Id en returns the index position in array.
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param id int
  * \return Return employee index position or (-1) if [Invalid length or NULL pointer received or employee not found]
  *
  */
-int orquesta_searchById(Orquesta* list,int len,int id)
+int instrumento_searchById(Instrumento* list,int len,int id)
 {
     int i;
     int ret=-1;
@@ -263,15 +254,15 @@ int orquesta_searchById(Orquesta* list,int len,int id)
     return ret;
 }
 
-/** \brief find an Orquesta by Tipo and returns the index position in array.
+/** \brief find an Instrumento by Tipo and returns the index position in array.
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param Tipo int
  * \return Return employee index position or (-1) if [Invalid length or NULL pointer received or employee not found]
  *
  */
-int orquesta_searchByTipo(Orquesta* list,int len,int Tipo)
+int instrumento_searchByTipo(Instrumento* list,int len,int Tipo)
 {
     int i;
     int ret=-1;
@@ -286,15 +277,15 @@ int orquesta_searchByTipo(Orquesta* list,int len,int Tipo)
     return ret;
 }
 
-/** \brief find an Orquesta by Nombre and returns the index position in array.
+/** \brief find an Instrumento by Nombre and returns the index position in array.
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param Nombre char*
  * \return Return employee index position or (-1) if [Invalid length or NULL pointer received or employee not found]
  *
  */
-int orquesta_searchByNombre(Orquesta* list,int len,char* Nombre)
+int instrumento_searchByNombre(Instrumento* list,int len,char* Nombre)
 {
     int i;
     int ret=-1;
@@ -308,40 +299,18 @@ int orquesta_searchByNombre(Orquesta* list,int len,char* Nombre)
     }
     return ret;
 }
-/** \brief find an Orquesta by Lugar and returns the index position in array.
- *
- * \param list Orquesta*
- * \param len int
- * \param Lugar char*
- * \return Return employee index position or (-1) if [Invalid length or NULL pointer received or employee not found]
- *
- */
-int orquesta_searchByLugar(Orquesta* list,int len,char* Lugar)
-{
-    int i;
-    int ret=-1;
-    for(i=0; i<len; i++)
-    {
-        if(!strcmp(list[i].Lugar,Lugar))
-        {
-            ret=i;
-            break;
-        }
-    }
-    return ret;
-}
 
-/** \brief swap two positions in an array of Orquesta datatype
+/** \brief swap two positions in an array of Instrumento datatype
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param index int
  * \return void
  *
  */
-void orquesta_swap(Orquesta* list,int i)
+void instrumento_swap(Instrumento* list,int i)
 {
-    Orquesta buffer1;
-    Orquesta buffer2;
+    Instrumento buffer1;
+    Instrumento buffer2;
     buffer1=list[i];
     buffer2=list[i+1];
     list[i]=buffer2;
@@ -349,15 +318,15 @@ void orquesta_swap(Orquesta* list,int i)
     return;
 }
 
-/** \brief Sort the elements in the array of Orquesta, the argument order indicate UP or DOWN order
+/** \brief Sort the elements in the array of Instrumento, the argument order indicate UP or DOWN order
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param order int [1] indicate UP - [0] indicate DOWN
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_sortById(Orquesta* list, int len, int order)
+int instrumento_sortById(Instrumento* list, int len, int order)
 {
     int i;
     int swap;
@@ -371,12 +340,12 @@ int orquesta_sortById(Orquesta* list, int len, int order)
             {
                 if(order==0 && list[i].id<list[i+1].id)
                 {
-                    orquesta_swap(list,i);
+                    instrumento_swap(list,i);
                     swap=1;
                 }
                 if(order==1 && list[i].id>list[i+1].id)
                 {
-                    orquesta_swap(list,i);
+                    instrumento_swap(list,i);
                     swap=1;
                 }
             }
@@ -386,15 +355,15 @@ int orquesta_sortById(Orquesta* list, int len, int order)
     return ret;
 }
 
-/** \brief Sort the elements in the array of Orquesta, the argument order indicate UP or DOWN order
+/** \brief Sort the elements in the array of Instrumento, the argument order indicate UP or DOWN order
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param order int [1] indicate UP - [0] indicate DOWN
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_sortByTipo(Orquesta* list, int len, int order)
+int instrumento_sortByTipo(Instrumento* list, int len, int order)
 {
     int i;
     int swap;
@@ -408,12 +377,12 @@ int orquesta_sortByTipo(Orquesta* list, int len, int order)
             {
                 if(order==0 && list[i].Tipo<list[i+1].Tipo)
                 {
-                    orquesta_swap(list,i);
+                    instrumento_swap(list,i);
                     swap=1;
                 }
                 if(order==1 && list[i].Tipo>list[i+1].Tipo)
                 {
-                    orquesta_swap(list,i);
+                    instrumento_swap(list,i);
                     swap=1;
                 }
             }
@@ -423,15 +392,15 @@ int orquesta_sortByTipo(Orquesta* list, int len, int order)
     return ret;
 }
 
-/** \brief Sort the elements in the array of Orquesta, the argument order indicate UP or DOWN order
+/** \brief Sort the elements in the array of Instrumento, the argument order indicate UP or DOWN order
  *
- * \param list Orquesta*
+ * \param list Instrumento*
  * \param len int
  * \param order int [1] indicate UP - [0] indicate DOWN
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_sortByNombre(Orquesta* list, int len, int order)
+int instrumento_sortByNombre(Instrumento* list, int len, int order)
 {
     int i;
     int swap;
@@ -445,49 +414,12 @@ int orquesta_sortByNombre(Orquesta* list, int len, int order)
             {
                 if(order==0 && strcmp(list[i].Nombre,list[i+1].Nombre)<0)
                 {
-                    orquesta_swap(list,i);
+                    instrumento_swap(list,i);
                     swap=1;
                 }
                 if(order==1 && strcmp(list[i].Nombre,list[i+1].Nombre)>0)
                 {
-                    orquesta_swap(list,i);
-                    swap=1;
-                }
-            }
-        }while(swap!=0);
-        ret=0;
-    }
-    return ret;
-}
-
-/** \brief Sort the elements in the array of Orquesta, the argument order indicate UP or DOWN order
- *
- * \param list Orquesta*
- * \param len int
- * \param order int [1] indicate UP - [0] indicate DOWN
- * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
- *
- */
-int orquesta_sortByLugar(Orquesta* list, int len, int order)
-{
-    int i;
-    int swap;
-    int ret= -1;
-    if(list!=NULL && len>0 && (order==0 || order==1))
-    {
-        do
-        {
-            swap=0;
-            for(i=0;i<len-1;i++)
-            {
-                if(order==0 && strcmp(list[i].Lugar,list[i+1].Lugar)<0)
-                {
-                    orquesta_swap(list,i);
-                    swap=1;
-                }
-                if(order==1 && strcmp(list[i].Lugar,list[i+1].Lugar)>0)
-                {
-                    orquesta_swap(list,i);
+                    instrumento_swap(list,i);
                     swap=1;
                 }
             }
