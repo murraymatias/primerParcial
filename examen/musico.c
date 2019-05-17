@@ -96,11 +96,14 @@ int musico_add(  Musico* list,
         if(i>=0)
         {
             list[i].id=id;
+            list[i].isEmpty=0;
             list[i].fkOrquesta=fkOrquesta;
             list[i].fkInstrumento=fkInstrumento;
             list[i].Edad=Edad;
             strcpy(list[i].Nombre,Nombre);
             strcpy(list[i].Apellido,Apellido);
+            printf("\nAgregado");
+            musico_printByIndex(list,i);
             ret=0;
         }
     }
@@ -156,11 +159,11 @@ void musico_printByIndex(Musico list[],int index)
 {
 
     printf("\nId: %d\
-            \nfkOrquesta: %d\
-            \nfkInstrumento: %d\
-            \nEdad: %d\
-            \nNombre: %s\
-            \nApellido: %s",
+            \n1.Orquesta: %d\
+            \n2.Instrumento: %d\
+            \n3.Edad: %d\
+            \n4.Nombre: %s\
+            \n5.Apellido: %s",
             list[index].id,
             list[index].fkOrquesta,
             list[index].fkInstrumento,
@@ -184,7 +187,7 @@ void musico_printAll(Musico* list,int len)
     {
         for(i=0;i<len;i++)
         {
-            if(!list[i].isEmpty)
+            if(list[i].isEmpty==0)
             {
                 musico_printByIndex(list,i);
             }
