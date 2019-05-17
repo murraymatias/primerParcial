@@ -14,10 +14,12 @@ int main()
     instrumento_init(instrumentos,20);
     int option;
     int auxInt;
-    while(option!=20)
+    while(option!=13)
     {
-        printf("\n1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n");
-        utn_getInt(&option,"\nSeleccione opcion: ","\nError",1,50,10);
+        printf("\n1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\
+        \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir mosicos\
+        \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n");
+        utn_getInt(&option,"\nSeleccione opcion: ","\nOpcion invalida",1,13,10);
         switch(option)
         {
         case 1:
@@ -37,6 +39,19 @@ int main()
             break;
         case 4:
             orquesta_modMenu(orquestas,50);
+            break;
+        case 5:
+            printf("falta");
+            break;
+        case 6:
+            printf("falta");
+            break;
+        case 7:
+            printf("falta");
+            break;
+        case 8:
+            printf("falta");
+            break;
         case 9:
             instrumento_new(instrumentos,20);
             break;
