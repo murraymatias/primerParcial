@@ -38,6 +38,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="musico.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="musico.h" />
 		<Unit filename="orquesta.c">
 			<Option compilerVar="CC" />
 		</Unit>

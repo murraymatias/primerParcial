@@ -4,7 +4,7 @@
 #include "utn.h"
 #include "instrumento.h"
 #include "orquesta.h"
-
+#include "musico.h"
 
 int main()
 {
@@ -12,12 +12,14 @@ int main()
     orquesta_init(orquestas,50);
     Instrumento instrumentos[20];
     instrumento_init(instrumentos,20);
+    Musico musicos[1000];
+    musico_init(musicos,1000);
     int option;
     int auxInt;
     while(option!=13)
     {
         printf("\n1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\
-        \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir mosicos\
+        \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir musicos\
         \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n");
         utn_getInt(&option,"\nSeleccione opcion: ","\nOpcion invalida",1,13,10);
         switch(option)
@@ -41,16 +43,22 @@ int main()
             orquesta_modMenu(orquestas,50);
             break;
         case 5:
-            printf("falta");
+            musico_new(musicos,1000);
             break;
         case 6:
-            printf("falta");
+            musico_modMenu(musicos,1000);
             break;
         case 7:
-            printf("falta");
+            utn_getInt(&auxInt,"\nIngrese ID: ","\nError",1,9999,10);
+            if(musico_searchById(musicos,1000,auxInt)<0)
+            {
+                printf("No existe el ID");
+                break;
+            }
+            musico_delete(musicos,1000,auxInt);
             break;
         case 8:
-            printf("falta");
+            musico_printAll(musicos,1000);
             break;
         case 9:
             instrumento_new(instrumentos,20);
