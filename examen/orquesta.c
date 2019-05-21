@@ -204,15 +204,16 @@ int orquesta_modMenu(Orquesta *list,int len)
     int bufferTipo;
     char bufferNombre[50];
     char bufferLugar[255];
+    clrscr();
     utn_getInt(&auxId,"\nIngrese id: ","\nValor invalido",0,999999,10);
     i=orquesta_searchById(list,len,auxId);
     if(i>=0)
     {
 
-        while(option!=5)
+        while(option!=4)
         {
             orquesta_printByIndex(list,i);
-            printf("4. Salir");
+            printf("4.Salir");
             utn_getInt(&option,"\nSeleccione campo a modificar: ","\nOpcion invalida",1,5,10);
             switch(option)
             {
@@ -496,3 +497,5 @@ int orquesta_sortByLugar(Orquesta* list, int len, int order)
     }
     return ret;
 }
+
+int orquesta_isValidId(int id)

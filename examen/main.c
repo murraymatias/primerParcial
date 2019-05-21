@@ -18,8 +18,9 @@ int main()
     int auxInt;
     while(option!=13)
     {
-        printf("\n1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\
-        \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir musicos\
+        clrscr();
+        printf("\n1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\n\
+        \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir musicos\n\
         \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n");
         utn_getInt(&option,"\nSeleccione opcion: ","\nOpcion invalida",1,13,10);
         switch(option)

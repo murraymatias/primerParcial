@@ -46,3 +46,50 @@
 	"instrumento.h"
 	"musico.h"
 
+1558433688 source:d:\venv\primerparcial\examen\instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"instrumento.h"
+
+1558439239 d:\venv\primerparcial\examen\utn.h
+
+1558433688 d:\venv\primerparcial\examen\instrumento.h
+
+1558439289 source:d:\venv\primerparcial\examen\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1558433688 d:\venv\primerparcial\examen\orquesta.h
+
+1558433688 d:\venv\primerparcial\examen\musico.h
+
+1558460787 source:d:\venv\primerparcial\examen\musico.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"orquesta.h"
+	"instrumento.h"
+	"musico.h"
+
+1558435926 source:d:\venv\primerparcial\examen\orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"orquesta.h"
+
+1558435898 source:d:\venv\primerparcial\examen\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+

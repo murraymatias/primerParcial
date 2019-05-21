@@ -64,14 +64,6 @@ int musico_init(Musico* list,int len)
  * \param fkInstrumento int
  * \param FKeyField3 int
  * \param Edad int
- * \param IntField2 int
- * \param IntField3 int
- * \param FloatField1 float
- * \param FloatField2 float
- * \param FloatField3 float
- * \param CharField1 char
- * \param CharField2 char
- * \param CharField3 char
  * \param Nombre char*
  * \param Apellido char*
  * \param StringField3 char*
@@ -117,7 +109,7 @@ int musico_add(  Musico* list,
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int musico_new(Musico* list,int len)
+int musico_new(Musico* list,int lenMusico,Orquesta* listOrquesta, int lenOrquesta,Instrumento* listIntrumento,int lenInstrumento)
 {
     int ret= -1;
     int bufferfkOrquesta;
@@ -128,6 +120,12 @@ int musico_new(Musico* list,int len)
 
     if(list!=NULL && len>0)
     {
+        utn_getInt(&bufferfkOrquesta,"Ingrese ID Orquesta","Valor invalido",1,9999,10);
+        if(orquesta_searchById(listOrquesta,lenOrquesta,bufferfkOrquesta)>=0)
+        {
+
+        }
+
         if(
         !utn_getInt(&bufferfkOrquesta,"Ingrese fkOrquesta","Valor invalido",1,50,10)&&
         !utn_getInt(&bufferfkInstrumento,"Ingrese fkInstrumento","Valor invalido",1,50,10)&&

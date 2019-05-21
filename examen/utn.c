@@ -274,3 +274,8 @@ int utn_getGender( char *pResult,
     }
     return ret;
 }
+
+void clrscr(void)
+{
+    system("@cls||clear");
+}
