@@ -160,6 +160,7 @@ int main()
                     myPause();
                     break;
                 case 5:
+                    inf_musicoPorOrquesta(orquestas,50,musicos,1000,instrumentos,20);
                     myPause();
                     break;
                 case 6:

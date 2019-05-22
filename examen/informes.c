@@ -126,3 +126,25 @@ int inf_completeOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusi
     return ret;
 }
 
+int inf_musicoPorOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,int lenMusico,Instrumento* listInstrumento,int lenInstrumento)
+{
+    int indiceMusico;
+    int indiceOrquesta;
+    int indiceInstrumento;
+    int idIngresado;
+    utn_getInt(&idIngresado,"Ingrese id de la orquesta: ","Error",0,99999,10);
+    indiceOrquesta=orquesta_searchById(listOrquesta,lenOrquesta,idIngresado);
+    if(indiceOrquesta>=0)
+    {
+        for(indiceMusico=0;indiceMusico<lenMusico;indiceMusico++)
+        {
+            if(listMusico[indiceMusico].fkOrquesta==idIngresado)
+            {
+                musico_printByIndex(listMusico,indiceMusico);
+                indiceInstrumento=instrumento_searchById(listInstrumento,lenInstrumento,(listMusico[indiceMusico].fkInstrumento));
+                instrumento_printByIndex(listInstrumento,indiceInstrumento);
+            }
+        }
+    }
+    return 0;
+}
