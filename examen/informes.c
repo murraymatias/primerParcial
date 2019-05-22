@@ -148,3 +148,40 @@ int inf_musicoPorOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMus
     }
     return 0;
 }
+
+int inf_orquestaMasMusicos(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,int lenMusico)
+{
+    int ret= -1;
+    int countMusico;
+    int countMusicoMax=-1;
+    int idOrquestaMax;
+    int auxIdOrquesta=0;
+    int auxIdMusico=0;
+    if(listMusico!=NULL && listOrquesta!=NULL && lenMusico>=0 && lenOrquesta>=0)
+    {
+        for(auxIdOrquesta=0;auxIdOrquesta<lenOrquesta;auxIdOrquesta++)
+        {
+            if(listOrquesta[auxIdOrquesta].isEmpty==0)
+            {
+                countMusico=0;
+                for(auxIdMusico=0;auxIdMusico<lenMusico;auxIdMusico++)
+                {
+                    if(listMusico[auxIdMusico].fkOrquesta==listOrquesta[auxIdOrquesta].id)
+                    {
+                        countMusico++;
+                    }
+                }
+                if(countMusico>countMusicoMax)
+                {
+                    countMusicoMax=countMusico;
+                    idOrquestaMax=auxIdOrquesta;
+                }
+            }
+
+        }
+        orquesta_printByIndex(listOrquesta,idOrquestaMax);
+        printf("Cantidad de musicos %d/n",countMusicoMax);
+        ret=0;
+    }
+    return ret;
+}

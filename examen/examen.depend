@@ -173,7 +173,7 @@
 
 1558564285 /home/matias/Utn/primerParcial/examen/orquesta.h
 
-1558567794 source:/home/matias/Utn/primerParcial/examen/main.c
+1558568291 source:/home/matias/Utn/primerParcial/examen/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -214,7 +214,7 @@
 	"orquesta.h"
 	"musico.h"
 
-1558567729 source:/home/matias/Utn/primerParcial/examen/informes.c
+1558568350 source:/home/matias/Utn/primerParcial/examen/informes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -224,5 +224,5 @@
 	"orquesta.h"
 	"musico.h"
 
-1558567810 /home/matias/Utn/primerParcial/examen/informes.h
+1558568350 /home/matias/Utn/primerParcial/examen/informes.h
 
