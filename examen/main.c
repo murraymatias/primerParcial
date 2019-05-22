@@ -53,7 +53,7 @@ int main()
         clrscr();
         printf("1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\n\
         \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir musicos\n\
-        \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n\n14. Informes\n");
+        \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n\n14. Informes\n\n15. Salir\n");
         utn_getInt(&option,"\nSeleccione opcion: ","\nOpcion invalida",1,50,10);
         switch(option)
         {
@@ -168,6 +168,7 @@ int main()
                     myPause();
                     break;
                 case 7:
+                    inf_listarMusicosCuerdas(musicos,1000,instrumentos,20);
                     myPause();
                     break;
                 case 8:
@@ -175,6 +176,9 @@ int main()
                     break;
                 }
             }
+            break;
+            case 15:
+            printf("Adios.");
             break;
         default:
             printf("Opcion invalida");

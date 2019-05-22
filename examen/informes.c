@@ -185,3 +185,25 @@ int inf_orquestaMasMusicos(Orquesta* listOrquesta,int lenOrquesta,Musico* listMu
     }
     return ret;
 }
+
+int inf_listarMusicosCuerdas(Musico* listMusico,int lenMusico,Instrumento* listInstrumento, int lenInstrumento)
+{
+    int i;
+    int ret= -1;
+    int indiceInstrumento;
+    musico_sortByApellido(listMusico,lenMusico,1);
+    if(listMusico!=NULL && lenMusico>=0 && listInstrumento!=NULL && lenInstrumento>=0)
+    {
+        for(i=0;i<lenMusico;i++)
+        {
+            indiceInstrumento=instrumento_searchById(listInstrumento,lenInstrumento,listMusico[i].fkInstrumento);
+            if(listInstrumento[indiceInstrumento].Tipo==1)
+            {
+                musico_printByIndex(listMusico,i);
+                instrumento_printByIndexTipo(listInstrumento,indiceInstrumento);
+            }
+        }
+        ret=0;
+    }
+    return ret;
+}

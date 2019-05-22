@@ -469,3 +469,26 @@ int instrumento_getInstrumento(int*pId,Instrumento* list, int len)
     }
     return ret;
 }
+
+void instrumento_printByIndexTipo(Instrumento list[],int index)
+{
+    char auxTipo[50];
+    if(list[index].Tipo==1)
+    {
+        strcpy(auxTipo,"Cuerdas");
+    }
+    else if(list[index].Tipo==2)
+    {
+        strcpy(auxTipo,"Viento-madera");
+    }
+    else if(list[index].Tipo==3)
+    {
+        strcpy(auxTipo,"Viento-metal");
+    }
+    else if(list[index].Tipo==4)
+    {
+        strcpy(auxTipo,"Precusion");
+    }
+    printf("Tipo: %s",auxTipo);
+    return;
+}

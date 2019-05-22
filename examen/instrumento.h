@@ -30,5 +30,5 @@ int instrumento_sortById(Instrumento* list, int len, int order);
 int instrumento_sortByTipo(Instrumento* list, int len, int order);
 int instrumento_sortByNombre(Instrumento* list, int len, int order);
 int instrumento_getInstrumento(int*pId,Instrumento* list, int len);
-
+void instrumento_printByIndexTipo(Instrumento list[],int index);
 
