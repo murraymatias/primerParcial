@@ -93,3 +93,63 @@
 	<ctype.h>
 	"utn.h"
 
+1558556366 source:c:\users\matty\documents\utn\primerparcial\examen\instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1558555860 c:\users\matty\documents\utn\primerparcial\examen\utn.h
+
+1558556585 c:\users\matty\documents\utn\primerparcial\examen\instrumento.h
+	"musico.h"
+
+1558556366 source:c:\users\matty\documents\utn\primerparcial\examen\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1558556600 c:\users\matty\documents\utn\primerparcial\examen\orquesta.h
+
+1558556636 c:\users\matty\documents\utn\primerparcial\examen\musico.h
+	"orquesta.h"
+
+1558556366 source:c:\users\matty\documents\utn\primerparcial\examen\musico.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1558556366 source:c:\users\matty\documents\utn\primerparcial\examen\orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1558555729 source:c:\users\matty\documents\utn\primerparcial\examen\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+

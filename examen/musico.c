@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utn.h"
-#include "orquesta.h"
 #include "instrumento.h"
+#include "orquesta.h"
 #include "musico.h"
 
 static int autoId(void)
@@ -109,7 +110,7 @@ int musico_add(  Musico* list,
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int musico_new(Musico* list,int lenMusico,Orquesta* listOrquesta, int lenOrquesta,Instrumento* listIntrumento,int lenInstrumento)
+int musico_new(Musico* list,int len,Orquesta* listOrquesta, int lenOrquesta,Instrumento* listIntrumento,int lenInstrumento)
 {
     int ret= -1;
     int bufferfkOrquesta;
@@ -120,18 +121,12 @@ int musico_new(Musico* list,int lenMusico,Orquesta* listOrquesta, int lenOrquest
 
     if(list!=NULL && len>0)
     {
-        utn_getInt(&bufferfkOrquesta,"Ingrese ID Orquesta","Valor invalido",1,9999,10);
-        if(orquesta_searchById(listOrquesta,lenOrquesta,bufferfkOrquesta)>=0)
-        {
-
-        }
-
         if(
-        !utn_getInt(&bufferfkOrquesta,"Ingrese fkOrquesta","Valor invalido",1,50,10)&&
-        !utn_getInt(&bufferfkInstrumento,"Ingrese fkInstrumento","Valor invalido",1,50,10)&&
-        !utn_getInt(&bufferEdad,"Ingrese Edad","Valor invalido",1,50,10)&&
-        !utn_getString(bufferNombre,"Ingrese Nombre","Valor invalido",1,255,10)&&
-        !utn_getString(bufferApellido,"Ingrese Apellido","Valor invalido",1,255,10))
+        !orquesta_getOrquesta(&bufferfkOrquesta,listOrquesta,lenOrquesta)&&
+        !instrumento_getInstrumento(&bufferfkInstrumento,listIntrumento,lenInstrumento)&&
+        !utn_getInt(&bufferEdad,"Ingrese Edad: ","Valor invalido",1,150,10)&&
+        !utn_getString(bufferNombre,"Ingrese Nombre: ","Valor invalido",1,255,10)&&
+        !utn_getString(bufferApellido,"Ingrese Apellido: ","Valor invalido",1,255,10))
         {
             musico_add(list,len,
                       bufferfkOrquesta,
@@ -161,7 +156,7 @@ void musico_printByIndex(Musico list[],int index)
             \n2.Instrumento: %d\
             \n3.Edad: %d\
             \n4.Nombre: %s\
-            \n5.Apellido: %s",
+            \n5.Apellido: %s\n",
             list[index].id,
             list[index].fkOrquesta,
             list[index].fkInstrumento,
@@ -204,9 +199,13 @@ void musico_printAll(Musico* list,int len)
  */
 int musico_delete(Musico* list,int len,int id)
 {
+    int auxPos;
     int ret= -1;
     if(list!=NULL && len>=0)
     {
+        auxPos=musico_searchById(list,len,id);
+        if(auxPos>=0)
+        {
         list[id].id=-1;
         list[id].isEmpty=1;
         list[id].Edad=-1;
@@ -215,6 +214,7 @@ int musico_delete(Musico* list,int len,int id)
         list[id].fkOrquesta=-1;
         list[id].fkInstrumento=-1;
         ret=0;
+        }
     }
     return ret;
 }
@@ -226,7 +226,7 @@ int musico_delete(Musico* list,int len,int id)
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int musico_modMenu(Musico *list,int len)
+int musico_modMenu(Musico* list,int len,Orquesta* listOrquesta, int lenOrquesta,Instrumento* listIntrumento,int lenInstrumento)
 {
     int ret=-1;
     int i;
@@ -242,30 +242,30 @@ int musico_modMenu(Musico *list,int len)
     if(i>=0)
     {
 
-        while(option!=16)
+        while(option!=6)
         {
-            musico_printAll(list,len);
-            printf("16. Salir");
+            musico_printByIndex(list,i);
+            printf("6. Salir");
             utn_getInt(&option,"\nSeleccione campo a modificar: ","\nOpcion invalida",1,16,10);
             switch(option)
             {
             case 1:
-                if(!utn_getInt(&bufferfkOrquesta,"Ingrese fkOrquesta","Valor invalido",1,50,10))
+                if(!orquesta_getOrquesta(&bufferfkOrquesta,listOrquesta,lenOrquesta))
                     list[i].fkOrquesta=bufferfkOrquesta;
                 break;
             case 2:
-                if(!utn_getInt(&bufferfkInstrumento,"Ingrese fkInstrumento","Valor invalido",1,50,10))
+                if(!instrumento_getInstrumento(&bufferfkInstrumento,listIntrumento,lenInstrumento))
                     list[i].fkInstrumento=bufferfkInstrumento;
                 break;
-            case 4:
+            case 3:
                 if(!utn_getInt(&bufferEdad,"Ingrese Edad","Valor invalido",1,50,10))
                     list[i].Edad=bufferEdad;
                 break;
-            case 13:
+            case 4:
                 if(!utn_getString(bufferNombre,"Ingrese Nombre","Valor invalido",1,255,10))
                     strcpy(list[i].Nombre,bufferNombre);
                 break;
-            case 14:
+            case 5:
                 if(!utn_getString(bufferApellido,"Ingrese Apellido","Valor invalido",1,255,10))
                     strcpy(list[i].Apellido,bufferApellido);
                 break;

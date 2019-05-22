@@ -12,7 +12,6 @@ typedef struct
     int fkInstrumento;
 }Musico;
 #endif // MUSICO_H_INCLUDED
-#include "orquesta.h"
 
 int musico_init(Musico* list,int len);
 int musico_add(Musico* list,

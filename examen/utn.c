@@ -3,6 +3,9 @@
 #include <string.h>
 #include <ctype.h>
 #include "utn.h"
+#include "instrumento.h"
+#include "orquesta.h"
+#include "musico.h"
 
 int utn_getString(  char *pResult,
                     char *pMsg,
@@ -273,6 +276,12 @@ int utn_getGender( char *pResult,
         }
     }
     return ret;
+}
+
+void myPause(void)
+{
+    printf("...");
+    getchar();
 }
 
 void clrscr(void)

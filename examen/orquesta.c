@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utn.h"
+#include "instrumento.h"
 #include "orquesta.h"
+#include "musico.h"
 
 static int autoId(void)
 {
@@ -14,7 +17,7 @@ static int orquesta_freePosition(Orquesta* list,int len)
 {
     int i;
     int ret=-1;
-    for(i=0;i<len;i++)
+    for(i=0; i<len; i++)
     {
         if(list[i].isEmpty==1)
         {
@@ -62,10 +65,10 @@ int orquesta_init(Orquesta* list,int len)
  *
  */
 int orquesta_add(  Orquesta* list,
-                int len,
-                int Tipo,
-                char* Nombre,
-                char* Lugar)
+                   int len,
+                   int Tipo,
+                   char* Nombre,
+                   char* Lugar)
 {
     int i;
     int id;
@@ -106,14 +109,14 @@ int orquesta_new(Orquesta* list,int len)
     if(list!=NULL && len>0)
     {
         if(
-        !utn_getInt(&bufferTipo,"Ingrese Tipo: \n1.Sinfonica\n2.Filarmonica\n3.Camara\n","Valor invalido",1,3,10)&&
-        !utn_getName(bufferNombre,50,"Ingrese Nombre: ","Valor invalido",1,50,10)&&
-        !utn_getAddress(bufferLugar,255,"Ingrese Lugar: ","Valor invalido",1,255,10))
+            !utn_getInt(&bufferTipo,"Ingrese Tipo: \n1.Sinfonica\n2.Filarmonica\n3.Camara\n","Valor invalido",1,3,10)&&
+            !utn_getName(bufferNombre,50,"Ingrese Nombre: ","Valor invalido",1,50,10)&&
+            !utn_getAddress(bufferLugar,255,"Ingrese Lugar: ","Valor invalido",1,255,10))
         {
             orquesta_add(list,len,
-                      bufferTipo,
-                      bufferNombre,
-                      bufferLugar);
+                         bufferTipo,
+                         bufferNombre,
+                         bufferLugar);
             ret=0;
         }
     }
@@ -130,15 +133,27 @@ int orquesta_new(Orquesta* list,int len)
  */
 void orquesta_printByIndex(Orquesta list[],int index)
 {
-
+    char auxTipo[50];
+    if(list[index].Tipo==1)
+    {
+        strcpy(auxTipo,"Sinfonica");
+    }
+    else if(list[index].Tipo==2)
+    {
+        strcpy(auxTipo,"Filarmonica");
+    }
+    else if(list[index].Tipo==3)
+    {
+        strcpy(auxTipo,"Camara");
+    }
     printf("\nId: %d\
-            \n1.Tipo: %d\
+            \n1.Tipo: %s\
             \n2.Nombre: %s\
             \n3.Lugar: %s\n",
-            list[index].id,
-            list[index].Tipo,
-            list[index].Nombre,
-            list[index].Lugar);
+           list[index].id,
+           auxTipo,
+           list[index].Nombre,
+           list[index].Lugar);
     return;
 }
 
@@ -154,7 +169,7 @@ void orquesta_printAll(Orquesta* list,int len)
     int i;
     if(list!=NULL && len>=0)
     {
-        for(i=0;i<len;i++)
+        for(i=0; i<len; i++)
         {
             if(list[i].isEmpty==0)
             {
@@ -173,17 +188,24 @@ void orquesta_printAll(Orquesta* list,int len)
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_delete(Orquesta* list,int len,int id)
+int orquesta_delete(Orquesta* list,int len,int id,Musico* listMusicos,int lenMusicos)
 {
+    //int i;
+    int auxPos;
     int ret= -1;
     if(list!=NULL && len>=0)
     {
-        list[id].id=-1;
-        list[id].isEmpty=1;
-        list[id].Tipo=-1;
-        strcpy(list[id].Nombre,""),
-        strcpy(list[id].Lugar,"");
+
+        auxPos=orquesta_searchById(list,len,id);
+        if(auxPos>=0)
+        {
+        list[auxPos].id=-1;
+        list[auxPos].isEmpty=1;
+        list[auxPos].Tipo=-1;
+        strcpy(list[auxPos].Nombre,""),
+        strcpy(list[auxPos].Lugar,"");
         ret=0;
+        }
     }
     return ret;
 }
@@ -368,7 +390,7 @@ int orquesta_sortById(Orquesta* list, int len, int order)
         do
         {
             swap=0;
-            for(i=0;i<len-1;i++)
+            for(i=0; i<len-1; i++)
             {
                 if(order==0 && list[i].id<list[i+1].id)
                 {
@@ -381,7 +403,8 @@ int orquesta_sortById(Orquesta* list, int len, int order)
                     swap=1;
                 }
             }
-        }while(swap!=0);
+        }
+        while(swap!=0);
         ret=0;
     }
     return ret;
@@ -405,7 +428,7 @@ int orquesta_sortByTipo(Orquesta* list, int len, int order)
         do
         {
             swap=0;
-            for(i=0;i<len-1;i++)
+            for(i=0; i<len-1; i++)
             {
                 if(order==0 && list[i].Tipo<list[i+1].Tipo)
                 {
@@ -418,7 +441,8 @@ int orquesta_sortByTipo(Orquesta* list, int len, int order)
                     swap=1;
                 }
             }
-        }while(swap!=0);
+        }
+        while(swap!=0);
         ret=0;
     }
     return ret;
@@ -442,7 +466,7 @@ int orquesta_sortByNombre(Orquesta* list, int len, int order)
         do
         {
             swap=0;
-            for(i=0;i<len-1;i++)
+            for(i=0; i<len-1; i++)
             {
                 if(order==0 && strcmp(list[i].Nombre,list[i+1].Nombre)<0)
                 {
@@ -455,7 +479,8 @@ int orquesta_sortByNombre(Orquesta* list, int len, int order)
                     swap=1;
                 }
             }
-        }while(swap!=0);
+        }
+        while(swap!=0);
         ret=0;
     }
     return ret;
@@ -479,7 +504,7 @@ int orquesta_sortByLugar(Orquesta* list, int len, int order)
         do
         {
             swap=0;
-            for(i=0;i<len-1;i++)
+            for(i=0; i<len-1; i++)
             {
                 if(order==0 && strcmp(list[i].Lugar,list[i+1].Lugar)<0)
                 {
@@ -492,10 +517,30 @@ int orquesta_sortByLugar(Orquesta* list, int len, int order)
                     swap=1;
                 }
             }
-        }while(swap!=0);
+        }
+        while(swap!=0);
         ret=0;
     }
     return ret;
 }
 
-int orquesta_isValidId(int id)
+
+int orquesta_getOrquesta(int*pId,Orquesta* list, int len)
+{
+    int ret=-1;
+    int bufferId;
+    if(pId!=NULL && list!=NULL && len>0)
+    {
+        utn_getInt(&bufferId,"\nIngrese Id de la orquesta: ","\nvalor invalido",0,99999,10);
+        if(orquesta_searchById(list,len,bufferId)>=0)
+        {
+            *pId=bufferId;
+            ret=0;
+        }
+        else
+        {
+            printf("\nEl id no existe");
+        }
+    }
+    return ret;
+}

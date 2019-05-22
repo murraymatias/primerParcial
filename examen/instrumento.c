@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utn.h"
 #include "instrumento.h"
+#include "orquesta.h"
+#include "musico.h"
 
 static int autoId(void)
 {
@@ -64,8 +67,7 @@ int instrumento_init(Instrumento* list,int len)
 int instrumento_add(  Instrumento* list,
                 int len,
                 int Tipo,
-                char* Nombre,
-                char* Lugar)
+                char* Nombre)
 {
     int i;
     int id;
@@ -100,19 +102,16 @@ int instrumento_new(Instrumento* list,int len)
     int ret= -1;
     int bufferTipo;
     char bufferNombre[50];
-    char bufferLugar[255];
 
     if(list!=NULL && len>0)
     {
         if(
         !utn_getInt(&bufferTipo,"Ingrese Tipo: \n1.Cuerdas\n2.Viento-madera\n3.Viento-metal\n4.Precusion\n","Valor invalido",1,4,10)&&
-        !utn_getName(bufferNombre,50,"Ingrese Nombre: ","Valor invalido",1,50,10)&&
-        !utn_getAddress(bufferLugar,255,"Ingrese Lugar: ","Valor invalido",1,255,10))
+        !utn_getName(bufferNombre,50,"Ingrese Nombre: ","Valor invalido",1,50,10))
         {
             instrumento_add(list,len,
                       bufferTipo,
-                      bufferNombre,
-                      bufferLugar);
+                      bufferNombre);
             ret=0;
         }
     }
@@ -129,12 +128,28 @@ int instrumento_new(Instrumento* list,int len)
  */
 void instrumento_printByIndex(Instrumento list[],int index)
 {
-
+    char auxTipo[50];
+    if(list[index].Tipo==1)
+    {
+        strcpy(auxTipo,"Cuerdas");
+    }
+    else if(list[index].Tipo==2)
+    {
+        strcpy(auxTipo,"Viento-madera");
+    }
+    else if(list[index].Tipo==3)
+    {
+        strcpy(auxTipo,"Viento-metal");
+    }
+    else if(list[index].Tipo==4)
+    {
+        strcpy(auxTipo,"Precusion");
+    }
     printf("\nId: %d\
-            \n1.Tipo: %d\
+            \n1.Tipo: %s\
             \n2.Nombre: %s\n",
             list[index].id,
-            list[index].Tipo,
+            auxTipo,
             list[index].Nombre);
     return;
 }
@@ -172,15 +187,21 @@ void instrumento_printAll(Instrumento* list,int len)
  */
 int instrumento_delete(Instrumento* list,int len,int id)
 {
+    int auxPos;
     int ret= -1;
     if(list!=NULL && len>=0)
     {
-        list[id].id=-1;
-        list[id].isEmpty=1;
-        list[id].Tipo=-1;
-        strcpy(list[id].Nombre,"");
+        auxPos=instrumento_searchById(list,len,id);
+        if(auxPos>=0)
+        {
+        list[auxPos].id=-1;
+        list[auxPos].isEmpty=1;
+        list[auxPos].Tipo=-1;
+        strcpy(list[auxPos].Nombre,"");
         ret=0;
+        }
     }
+
     return ret;
 }
 
@@ -216,7 +237,7 @@ int instrumento_modMenu(Instrumento *list,int len)
                     list[i].Tipo=bufferTipo;
                 break;
             case 2:
-                if(!utn_getString(bufferNombre,"Ingrese Nombre","Valor invalido",1,50,10))
+                if(!utn_getString(bufferNombre,"Ingrese Nombre: ","Valor invalido",1,50,10))
                     strcpy(list[i].Nombre,bufferNombre);
                 break;
 
@@ -425,6 +446,26 @@ int instrumento_sortByNombre(Instrumento* list, int len, int order)
             }
         }while(swap!=0);
         ret=0;
+    }
+    return ret;
+}
+
+int instrumento_getInstrumento(int*pId,Instrumento* list, int len)
+{
+    int ret=-1;
+    int bufferId;
+    if(pId!=NULL && list!=NULL && len>0)
+    {
+        utn_getInt(&bufferId,"Ingrese Id de la instrumento: ","valor invalido",0,99999,10);
+        if(instrumento_searchById(list,len,bufferId)>=0)
+        {
+            *pId=bufferId;
+            ret=0;
+        }
+        else
+        {
+            printf("El id no existe");
+        }
     }
     return ret;
 }

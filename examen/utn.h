@@ -44,4 +44,8 @@ int utn_getGender( char *pResult,
                     char *pMsg,
                     char *pMsgError,
                     int attempts);
+
+void myPause(void);
+void clrscr(void);
+
 #endif // UTN_H_INCLUDED
