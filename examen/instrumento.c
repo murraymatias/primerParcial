@@ -9,7 +9,7 @@
 
 static int autoId(void)
 {
-    static int id=0;
+    static int id=1;
     return id++;
 }
 

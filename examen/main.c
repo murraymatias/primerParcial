@@ -6,6 +6,7 @@
 #include "instrumento.h"
 #include "orquesta.h"
 #include "musico.h"
+#include "informes.h"
 
 int main()
 {
@@ -17,30 +18,43 @@ int main()
     musico_init(musicos,1000);
 
     //Valores hardcodeados para testing
-    orquesta_add(orquestas,50,1,"Orquesta1","lugarorquesta1");
-    orquesta_add(orquestas,50,3,"Orquesta2","lugarorquesta2");
-    orquesta_add(orquestas,50,1,"Orquesta3","lugarorquesta3");
-    orquesta_add(orquestas,50,2,"Orquesta4","lugarorquesta4");
-    musico_add(musicos,1000,4,1,25,"Wanda","Lewis");
-    musico_add(musicos,1000,1,1,45,"Connor","Edmunds");
-    musico_add(musicos,1000,2,4,18,"Ava","Ince");
-    musico_add(musicos,1000,3,2,36,"Heather","Langdon");
-    instrumento_add(instrumentos,20,1,"Gitarra");
-    instrumento_add(instrumentos,20,4,"Piano");
-    instrumento_add(instrumentos,20,2,"Bateria");
-    instrumento_add(instrumentos,20,3,"Theremin");
+    orquesta_add(orquestas,50,1,"Orquesta1","Lugar1");
+    orquesta_add(orquestas,50,2,"Orquesta2","Lugar1");
+    orquesta_add(orquestas,50,3,"Orquesta3","Lugar2");
+    orquesta_add(orquestas,50,3,"Orquesta4","Lugar3");
+    musico_add(musicos,1000,1,1,30,"Mus1","Amus1");
+    musico_add(musicos,1000,1,1,35,"Mus2","Amus2");
+    musico_add(musicos,1000,1,1,25,"Mus3","Amus3");
+    musico_add(musicos,1000,1,1,25,"Mus4","Amus4");
+    musico_add(musicos,1000,1,1,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,1,25,"Mus6","Amus6");
+    musico_add(musicos,1000,1,2,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,2,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,2,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,2,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,4,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,4,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,4,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,4,25,"Mus5","Amus5");
+    musico_add(musicos,1000,1,3,25,"Mus5","Amus5");
+    instrumento_add(instrumentos,20,1,"Inst1");
+    instrumento_add(instrumentos,20,2,"Inst2");
+    instrumento_add(instrumentos,20,2,"Inst3");
+    instrumento_add(instrumentos,20,4,"Inst4");
+    instrumento_add(instrumentos,20,4,"Inst4");
     //
     //-------------------------------------------
 
     int option;
+    int optionInf;
     int auxInt;
-    while(option!=13)
+    while(option!=15)
     {
         clrscr();
         printf("1.Agregar orquesta\n2.Eliminar orquesta\n3.Imprimir orquestas\n4.Modificar orquesta\n\
         \n5.Agregar musico\n6.Modificar musico\n7.Eliminar musico\n8.Imprimir musicos\n\
-        \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n");
-        utn_getInt(&option,"\nSeleccione opcion: ","\nOpcion invalida",1,13,10);
+        \n9.Agregar instrumento\n12.Eliminar instrumento\n11.Imprimir instrumento\n12.Modificar instrumento\n13.Salir\n\n14. Informes\n");
+        utn_getInt(&option,"\nSeleccione opcion: ","\nOpcion invalida",1,50,10);
         switch(option)
         {
         case 1:
@@ -55,7 +69,7 @@ int main()
                 myPause();
                 break;
             }
-            orquesta_delete(orquestas,50,auxInt,musicos,1000);
+            orquesta_delete(orquestas,50,auxInt);
             printf("Eliminado.");
             myPause();
             break;
@@ -118,6 +132,47 @@ int main()
         case 13:
             printf("Adios");
             myPause();
+            break;
+        case 14:
+            while(optionInf!=9)
+            {
+                clrscr();
+                printf("1.Orquestas con mas de 5 musicos\n2.Musicos con edad 30 o mas\n3.Orquestas por lugar\n4.Listar orquestas completas\
+                \n5.Listar musicos de una orquesta\n6.Imprimir orquesta con mas musicos\n7.Listar musicos que tocan instrumentos de cuerda\n\
+                \n8.Imprimir promedio de musicos por orquesta\n\n9.Salir");
+                utn_getInt(&optionInf,"\nSeleccione opcion: ","\nOpcion invalida",1,50,10);
+                switch(optionInf)
+                {
+                case 1:
+                    inf_moreThanFive(orquestas,50,musicos,1000);
+                    myPause();
+                    break;
+                case 2:
+                    inf_moreThan30Years(musicos,1000);
+                    myPause();
+                    break;
+                case 3:
+                    inf_orquestasByLugar(orquestas,50);
+                    myPause();
+                    break;
+                case 4:
+                    inf_completeOrquesta(orquestas,50,musicos,1000,instrumentos,20);
+                    myPause();
+                    break;
+                case 5:
+                    myPause();
+                    break;
+                case 6:
+                    myPause();
+                    break;
+                case 7:
+                    myPause();
+                    break;
+                case 8:
+                    myPause();
+                    break;
+                }
+            }
             break;
         default:
             printf("Opcion invalida");

@@ -9,7 +9,7 @@
 
 static int autoId(void)
 {
-    static int id=0;
+    static int id=1;
     return id++;
 }
 
@@ -188,7 +188,7 @@ void orquesta_printAll(Orquesta* list,int len)
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
-int orquesta_delete(Orquesta* list,int len,int id,Musico* listMusicos,int lenMusicos)
+int orquesta_delete(Orquesta* list,int len,int id)
 {
     //int i;
     int auxPos;

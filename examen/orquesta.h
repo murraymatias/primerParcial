@@ -20,7 +20,7 @@ int orquesta_add(Orquesta* list,
 int orquesta_new(Orquesta* list,int len);
 void orquesta_printByIndex(Orquesta* list,int index);
 void orquesta_printAll(Orquesta* list,int len);
-int orquesta_delete(Orquesta* list,int len,int id,Musico* listMusicos,int lenMusicos);
+int orquesta_delete(Orquesta* list,int len,int id);
 int orquesta_modMenu(Orquesta *list,int len);
 int orquesta_searchById(Orquesta* list,int len,int id);
 int orquesta_searchByTipo(Orquesta* list,int len,int Tipo);
