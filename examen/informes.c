@@ -142,7 +142,7 @@ int inf_musicoPorOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMus
             {
                 musico_printByIndex(listMusico,indiceMusico);
                 indiceInstrumento=instrumento_searchById(listInstrumento,lenInstrumento,(listMusico[indiceMusico].fkInstrumento));
-                instrumento_printByIndex(listInstrumento,indiceInstrumento);
+                instrumento_printByIndexNoId(listInstrumento,indiceInstrumento);
             }
         }
     }

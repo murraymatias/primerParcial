@@ -154,6 +154,41 @@ void instrumento_printByIndex(Instrumento list[],int index)
     return;
 }
 
+/** \brief print one position of Instrumento array
+ *
+ * \param list Instrumento*
+ * \param length int
+ * \param index int
+ * \return void
+ *
+ */
+void instrumento_printByIndexNoId(Instrumento list[],int index)
+{
+    char auxTipo[50];
+    if(list[index].Tipo==1)
+    {
+        strcpy(auxTipo,"Cuerdas");
+    }
+    else if(list[index].Tipo==2)
+    {
+        strcpy(auxTipo,"Viento-madera");
+    }
+    else if(list[index].Tipo==3)
+    {
+        strcpy(auxTipo,"Viento-metal");
+    }
+    else if(list[index].Tipo==4)
+    {
+        strcpy(auxTipo,"Precusion");
+    }
+    printf("6.Instrumento: %s\
+           \n7.Tipo: %s\n",
+            list[index].Nombre,
+            auxTipo);
+    return;
+}
+
+
 /** \brief print the content of Instrumento array
  *
  * \param list Instrumento*

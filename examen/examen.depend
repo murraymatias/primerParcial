@@ -226,3 +226,76 @@
 
 1558568878 /home/matias/Utn/primerParcial/examen/informes.h
 
+1559185927 source:c:\repos\primerparcial\examen\informes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1559185568 c:\repos\primerparcial\examen\utn.h
+
+1559185999 c:\repos\primerparcial\examen\instrumento.h
+	"musico.h"
+
+1559185568 c:\repos\primerparcial\examen\musico.h
+	"orquesta.h"
+
+1559185568 c:\repos\primerparcial\examen\orquesta.h
+
+1559186125 source:c:\repos\primerparcial\examen\instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1559185568 source:c:\repos\primerparcial\examen\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+	"informes.h"
+
+1559185568 c:\repos\primerparcial\examen\informes.h
+
+1559185568 source:c:\repos\primerparcial\examen\musico.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1559185568 source:c:\repos\primerparcial\examen\orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
+1559185568 source:c:\repos\primerparcial\examen\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"instrumento.h"
+	"orquesta.h"
+	"musico.h"
+
