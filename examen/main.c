@@ -138,7 +138,7 @@ int main()
             {
                 clrscr();
                 printf("1.Orquestas con mas de 5 musicos\n2.Musicos con edad 30 o mas\n3.Orquestas por lugar\n4.Listar orquestas completas\
-                \n5.Listar musicos de una orquesta\n6.Imprimir orquesta con mas musicos\n7.Listar musicos que tocan instrumentos de cuerda\n\
+                \n5.Listar musicos de una orquesta\n6.Imprimir orquesta con mas musicos\n7.Listar musicos que tocan instrumentos de cuerda\
                 \n8.Imprimir promedio de musicos por orquesta\n\n9.Salir");
                 utn_getInt(&optionInf,"\nSeleccione opcion: ","\nOpcion invalida",1,50,10);
                 switch(optionInf)
