@@ -7,6 +7,14 @@
 #include "orquesta.h"
 #include "musico.h"
 
+/** \brief Imprime por consola las orquestas que poseen mas de 5 musicos
+ * \param listOrquesta Orquesta* Puntero al array de orquestas
+ * \param lenOrquesta int Tamaño array de orquestas
+ * \param listMusico Musico* Puntero al array de musicos
+ * \param lenOrquesta int Tamaño array de musicos
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_moreThanFive(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,int lenMusico)
 {
     int ret= -1;
@@ -39,6 +47,12 @@ int inf_moreThanFive(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,i
     return ret;
 }
 
+/** \brief Imprime por consola los musicos mayores a 30 años
+ * \param list Musico* Puntero al array de musicos
+ * \param len int Tamaño array de musicos
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_moreThan30Years(Musico* list,int len)
 {
     int i;
@@ -47,7 +61,7 @@ int inf_moreThan30Years(Musico* list,int len)
     {
         for(i=0;i<len;i++)
         {
-            if(list[i].Edad>=30)
+            if(list[i].Edad>30)
             {
                 musico_printByIndex(list,i);
             }
@@ -57,6 +71,12 @@ int inf_moreThan30Years(Musico* list,int len)
     return ret;
 }
 
+/** \brief Imprime por consola las orquestas que correspondan a un lugar ingresado por el usuario
+ * \param list Orquesta* Puntero al array de orquestas
+ * \param len int Tamaño array de orquestas
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_orquestasByLugar(Orquesta* list,int len)
 {
     int i;
@@ -77,6 +97,16 @@ int inf_orquestasByLugar(Orquesta* list,int len)
     return ret;
 }
 
+/** \brief Imprime por consola las orquestas que esten completas
+ * \param listOrquesta Orquesta* Puntero al array de orquestas
+ * \param lenOrquesta int Tamaño array de orquestas
+ * \param listMusico Musico* Puntero al array de musicos
+ * \param lenOrquesta int Tamaño array de musicos
+ * \param listInstrumento Instrumento* Puntero al array de instrumentos
+ * \param lenInstrumento int Tamaño array de instrumentos
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_completeOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,int lenMusico,Instrumento* listInstrumento,int lenInstrumento)
 {
     int ret= -1;
@@ -126,6 +156,16 @@ int inf_completeOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusi
     return ret;
 }
 
+/** \brief Imprime por consola los musicos y el instrumento que tocan insgresando la orquesta a la que pertenecen
+ * \param listOrquesta Orquesta* Puntero al array de orquestas
+ * \param lenOrquesta int Tamaño array de orquestas
+ * \param listMusico Musico* Puntero al array de musicos
+ * \param lenOrquesta int Tamaño array de musicos
+ * \param listInstrumento Instrumento* Puntero al array de instrumentos
+ * \param lenInstrumento int Tamaño array de instrumentos
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_musicoPorOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,int lenMusico,Instrumento* listInstrumento,int lenInstrumento)
 {
     int indiceMusico;
@@ -149,6 +189,14 @@ int inf_musicoPorOrquesta(Orquesta* listOrquesta,int lenOrquesta,Musico* listMus
     return 0;
 }
 
+/** \brief Imprime por consola la orquesta con mayor cantidad de musicos
+ * \param listOrquesta Orquesta* Puntero al array de orquestas
+ * \param lenOrquesta int Tamaño array de orquestas
+ * \param listMusico Musico* Puntero al array de musicos
+ * \param lenMusico int Tamaño array de musicos
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_orquestaMasMusicos(Orquesta* listOrquesta,int lenOrquesta,Musico* listMusico,int lenMusico)
 {
     int ret= -1;
@@ -186,6 +234,14 @@ int inf_orquestaMasMusicos(Orquesta* listOrquesta,int lenOrquesta,Musico* listMu
     return ret;
 }
 
+/** \brief Imprime por consola los musicos que tocan instrumentos de cuerda
+ * \param listMusico Musico* Puntero al array de musicos
+ * \param lenMusico int Tamaño array de musicos
+ * \param listInstrumento Instrumento* Puntero al array de instrumentos
+ * \param lenInstrumentos int Tamaño array de instrumentos
+ * \return int Return (-1) si Error [Largo invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int inf_listarMusicosCuerdas(Musico* listMusico,int lenMusico,Instrumento* listInstrumento, int lenInstrumento)
 {
     int i;
@@ -207,3 +263,4 @@ int inf_listarMusicosCuerdas(Musico* listMusico,int lenMusico,Instrumento* listI
     }
     return ret;
 }
+
